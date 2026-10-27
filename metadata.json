@@ -1,0 +1,6 @@
+{
+  "name": "WhatsApp Subject Digest & Card Generator",
+  "description": "Organize daily lessons, homework, and notes for Physics, Chemistry, Biology, Math, and English into clean, WhatsApp-ready preview cards and high-resolution downloadable images.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
