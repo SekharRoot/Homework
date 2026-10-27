@@ -29,7 +29,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          # Note: 'cache: npm' removed to avoid errors when package-lock.json is not committed
+
+      - name: Setup GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v5
 
       - name: Install dependencies
         run: |
@@ -46,10 +49,11 @@ jobs:
         env:
           NEXT_TELEMETRY_DISABLED: 1
           NEXT_EXPORT: 'true'
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
         run: npm run build
 
-      - name: Setup GitHub Pages
-        uses: actions/configure-pages@v5
+      - name: Prevent GitHub Pages Jekyll from ignoring _next CSS and JS assets
+        run: touch ./out/.nojekyll
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

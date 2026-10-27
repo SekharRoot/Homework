@@ -1,5 +1,19 @@
 import type {NextConfig} from 'next';
 
+const isGithubActions = process.env.GITHUB_ACTIONS === 'true';
+let repoBasePath = '';
+
+if (isGithubActions && process.env.NEXT_EXPORT === 'true') {
+  if (process.env.NEXT_PUBLIC_BASE_PATH) {
+    repoBasePath = process.env.NEXT_PUBLIC_BASE_PATH;
+  } else if (process.env.GITHUB_REPOSITORY) {
+    const parts = process.env.GITHUB_REPOSITORY.split('/');
+    if (parts.length > 1 && !parts[1].endsWith('.github.io')) {
+      repoBasePath = `/${parts[1]}`;
+    }
+  }
+}
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   eslint: {
@@ -8,17 +22,19 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
-  // Allow access to remote image placeholder.
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'picsum.photos',
         port: '',
-        pathname: '/**', // This allows any path under the hostname
+        pathname: '/**',
       },
     ],
   },
+  basePath: repoBasePath || undefined,
+  assetPrefix: repoBasePath || undefined,
   output: process.env.NEXT_EXPORT === 'true' ? 'export' : 'standalone',
   transpilePackages: ['motion'],
   webpack: (config, {dev}) => {
