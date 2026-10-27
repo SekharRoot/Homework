@@ -97,7 +97,7 @@ const SubjectItemCard = memo(function SubjectItemCard({
               type="checkbox"
               checked={subject.enabled}
               onChange={() => onToggle(subject.id)}
-              className="w-4 h-4 text-emerald-600 border-slate-300 rounded-none focus:ring-emerald-500 cursor-pointer"
+              className="w-4 h-4 accent-black dark:accent-white border-neutral-300 dark:border-neutral-700 rounded-none cursor-pointer"
             />
             <span className="hidden sm:inline">Include</span>
           </label>
@@ -130,7 +130,7 @@ const SubjectItemCard = memo(function SubjectItemCard({
               }
             }}
             placeholder={`Enter ${subject.name} homework, assignments, or chapter topics...`}
-            className="w-full text-sm leading-relaxed px-3 py-2 border rounded-none border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 text-slate-900 dark:text-slate-100 focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 placeholder:text-slate-400"
+            className="w-full text-sm leading-relaxed px-3 py-2 border rounded-none border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/40 text-neutral-900 dark:text-neutral-100 focus:bg-white dark:focus:bg-black focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white placeholder:text-neutral-400"
           />
         </div>
       )}
@@ -227,15 +227,15 @@ export function SubjectEditor({ data, onChange }: SubjectEditorProps) {
   return (
     <div className="space-y-6">
       {/* Title & Date Section */}
-      <div className="bg-white dark:bg-slate-900 p-5 border rounded-none border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
-        <h3 className="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider flex items-center gap-2">
-          <Calendar className="w-4 h-4 text-emerald-600" />
+      <div className="bg-white dark:bg-black p-5 border rounded-none border-neutral-200 dark:border-neutral-800 shadow-sm space-y-4">
+        <h3 className="text-xs font-bold text-neutral-800 dark:text-neutral-200 uppercase tracking-wider flex items-center gap-2">
+          <Calendar className="w-4 h-4 text-black dark:text-white" />
           <span>Card Title & Date</span>
         </h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="group-title" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+            <label htmlFor="group-title" className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
               Title
             </label>
             <input
@@ -244,12 +244,12 @@ export function SubjectEditor({ data, onChange }: SubjectEditorProps) {
               value={data.title}
               onChange={e => handleTitleChange(e.target.value)}
               placeholder="e.g. Homework"
-              className="w-full px-3.5 py-2 text-sm border rounded-none border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full px-3.5 py-2 text-sm border rounded-none border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white"
             />
           </div>
 
           <div>
-            <label htmlFor="group-date" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+            <label htmlFor="group-date" className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
               Date
             </label>
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 sm:gap-2">
@@ -258,20 +258,20 @@ export function SubjectEditor({ data, onChange }: SubjectEditorProps) {
                 type="date"
                 value={data.date}
                 onChange={e => handleDateChange(e.target.value)}
-                className="flex-1 min-w-0 px-3 py-2 text-sm border rounded-none border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="flex-1 min-w-0 px-3 py-2 text-sm border rounded-none border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white"
               />
               <div className="flex items-center gap-1.5 shrink-0">
                 <button
                   type="button"
                   onClick={() => handleSetQuickDate(0)}
-                  className="flex-1 sm:flex-none px-3 py-2 text-xs font-medium bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors rounded-none border border-slate-200 dark:border-slate-700 text-center"
+                  className="flex-1 sm:flex-none px-3 py-2 text-xs font-medium bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300 transition-colors rounded-none border border-neutral-200 dark:border-neutral-800 text-center"
                 >
                   Today
                 </button>
                 <button
                   type="button"
                   onClick={() => handleSetQuickDate(1)}
-                  className="flex-1 sm:flex-none px-3 py-2 text-xs font-medium bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors rounded-none border border-slate-200 dark:border-slate-700 text-center"
+                  className="flex-1 sm:flex-none px-3 py-2 text-xs font-medium bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300 transition-colors rounded-none border border-neutral-200 dark:border-neutral-800 text-center"
                 >
                   Tomorrow
                 </button>
@@ -281,8 +281,8 @@ export function SubjectEditor({ data, onChange }: SubjectEditorProps) {
         </div>
 
         <div>
-          <label htmlFor="announcement" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
-            Special Notice <span className="font-normal text-slate-400">(Optional)</span>
+          <label htmlFor="announcement" className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
+            Special Notice <span className="font-normal text-neutral-400">(Optional)</span>
           </label>
           <input
             id="announcement"
@@ -290,7 +290,7 @@ export function SubjectEditor({ data, onChange }: SubjectEditorProps) {
             value={data.announcement}
             onChange={e => handleAnnouncementChange(e.target.value)}
             placeholder="e.g. Unit test starts Monday. Complete pending assignments."
-            className="w-full px-3.5 py-2 text-sm border rounded-none border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            className="w-full px-3.5 py-2 text-sm border rounded-none border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white"
           />
         </div>
       </div>

@@ -30,7 +30,7 @@ export default function HomePage() {
     subjects: DEFAULT_SUBJECTS.map(s => ({ ...s, content: '' })),
   }));
 
-  const [theme, setTheme] = useState<ThemePreset>('whatsapp-mint');
+  const [theme, setTheme] = useState<ThemePreset>('clean-white');
   const [fontStyle, setFontStyle] = useState<FontStyle>('sans');
   const [isDownloading, setIsDownloading] = useState(false);
   const [activeMobileTab, setActiveMobileTab] = useState<'edit' | 'preview'>('edit');
@@ -161,7 +161,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-neutral-50 dark:bg-black text-neutral-900 dark:text-neutral-100 flex flex-col font-sans">
       {/* Top Navbar */}
       <Navbar
         onLoadSample={handleLoadSample}
@@ -173,14 +173,14 @@ export default function HomePage() {
       {/* Main Content Area */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-4 sm:py-6">
         {/* Mobile Viewport Sticky Toggle (Edit vs Preview) */}
-        <div className="lg:hidden sticky top-14 z-30 flex p-1 bg-slate-200/95 dark:bg-slate-800/95 backdrop-blur mb-4 rounded-none shadow-sm border border-slate-300 dark:border-slate-700">
+        <div className="lg:hidden sticky top-14 z-30 flex p-1 bg-neutral-200/95 dark:bg-neutral-900/95 backdrop-blur mb-4 rounded-none shadow-sm border border-neutral-300 dark:border-neutral-800">
           <button
             type="button"
             onClick={() => setActiveMobileTab('edit')}
             className={`flex-1 flex items-center justify-center gap-1.5 py-2 text-xs font-semibold rounded-none transition-all ${
               activeMobileTab === 'edit'
-                ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm'
-                : 'text-slate-600 dark:text-slate-400'
+                ? 'bg-black text-white dark:bg-white dark:text-black shadow-sm'
+                : 'text-neutral-600 dark:text-neutral-400'
             }`}
           >
             <Edit3 className="w-3.5 h-3.5" />
@@ -191,8 +191,8 @@ export default function HomePage() {
             onClick={() => setActiveMobileTab('preview')}
             className={`flex-1 flex items-center justify-center gap-1.5 py-2 text-xs font-semibold rounded-none transition-all ${
               activeMobileTab === 'preview'
-                ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm'
-                : 'text-slate-600 dark:text-slate-400'
+                ? 'bg-black text-white dark:bg-white dark:text-black shadow-sm'
+                : 'text-neutral-600 dark:text-neutral-400'
             }`}
           >
             <Eye className="w-3.5 h-3.5" />
@@ -232,17 +232,17 @@ export default function HomePage() {
 
             {/* Live Card Target (No rounded corners) */}
             <div className="relative">
-              <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 flex items-center justify-between">
+              <div className="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2 flex items-center justify-between">
                 <span className="flex items-center gap-1.5">
                   <Smartphone className="w-3.5 h-3.5" />
                   Live Preview Card (Export Target)
                 </span>
-                <span className="text-[11px] text-emerald-600 font-medium">
+                <span className="text-[11px] text-neutral-900 dark:text-neutral-100 font-semibold">
                   3x Ultra-HD PNG
                 </span>
               </div>
 
-              <div className="p-1 sm:p-4 bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex justify-center overflow-x-auto rounded-none">
+              <div className="p-1 sm:p-4 bg-neutral-100 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 flex justify-center overflow-x-auto rounded-none">
                 <SubjectCardPreview
                   ref={previewCardRef}
                   data={data}
@@ -252,16 +252,16 @@ export default function HomePage() {
               </div>
 
               {/* WhatsApp Quality Guidance Tip */}
-              <div className="mt-3 p-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-300 rounded-none space-y-1">
-                <div className="flex items-center gap-1.5 font-semibold text-slate-900 dark:text-white">
-                  <HelpCircle className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+              <div className="mt-3 p-3 bg-white dark:bg-black border border-neutral-200 dark:border-neutral-800 text-xs text-neutral-600 dark:text-neutral-300 rounded-none space-y-1">
+                <div className="flex items-center gap-1.5 font-semibold text-neutral-900 dark:text-white">
+                  <HelpCircle className="w-3.5 h-3.5 text-black dark:text-white shrink-0" />
                   <span>Is the PNG High Quality (HQ)?</span>
                 </div>
-                <p className="text-[11px] leading-relaxed text-slate-500 dark:text-slate-400">
-                  <strong className="text-slate-700 dark:text-slate-200">Yes, it is rendered in 3x Ultra-HD (1620px width)</strong> with lossless PNG compression. 
+                <p className="text-[11px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+                  <strong className="text-neutral-800 dark:text-neutral-200">Yes, it is rendered in 3x Ultra-HD (1620px width)</strong> with lossless PNG compression. 
                   When sending in WhatsApp:
                 </p>
-                <ul className="text-[11px] list-disc list-inside space-y-0.5 text-slate-500 dark:text-slate-400 pl-1">
+                <ul className="text-[11px] list-disc list-inside space-y-0.5 text-neutral-500 dark:text-neutral-400 pl-1">
                   <li><strong>Standard Photo:</strong> Text remains crisp and sharp even with WhatsApp preview compression.</li>
                   <li><strong>HD Toggle:</strong> Tap the <em>&quot;HD&quot;</em> icon before sending in WhatsApp for high-definition clarity.</li>
                   <li><strong>Document Mode:</strong> Attach as a <em>&quot;Document&quot;</em> in WhatsApp for 100% original pixel-perfect quality with zero compression.</li>
@@ -274,8 +274,8 @@ export default function HomePage() {
 
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-4 py-3 shadow-lg border border-slate-700 rounded-none text-xs sm:text-sm font-medium flex items-center gap-2.5 animate-in fade-in slide-in-from-bottom-2 duration-200">
-          <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+        <div className="fixed bottom-5 right-5 z-50 bg-black text-white px-4 py-3 shadow-lg border border-neutral-800 rounded-none text-xs sm:text-sm font-medium flex items-center gap-2.5 animate-in fade-in slide-in-from-bottom-2 duration-200">
+          <CheckCircle2 className="w-4 h-4 text-white" />
           <span>{toastMessage}</span>
         </div>
       )}

@@ -57,32 +57,32 @@ export const SubjectCardPreview = forwardRef<HTMLDivElement, SubjectCardPreviewP
     const cardBgClass = isMint
       ? 'bg-[#f4f7f6] text-slate-800'
       : isDark
-      ? 'bg-[#0f172a] text-slate-100'
+      ? 'bg-black text-neutral-100'
       : isBlue
       ? 'bg-[#f8fafc] text-slate-800'
       : isWarm
       ? 'bg-[#fefce8] text-amber-950'
-      : 'bg-white text-slate-800';
+      : 'bg-white text-neutral-900';
 
     const headerBgClass = isMint
       ? 'bg-[#075e54] text-white'
       : isDark
-      ? 'bg-[#1e293b] text-white'
+      ? 'bg-black text-white border-b border-neutral-800'
       : isBlue
       ? 'bg-[#1e3a8a] text-white'
       : isWarm
       ? 'bg-[#78350f] text-amber-50'
-      : 'bg-slate-900 text-white';
+      : 'bg-black text-white';
 
     const dateBannerClass = isMint
       ? 'bg-[#128c7e] text-white'
       : isDark
-      ? 'bg-slate-800 text-slate-200 border border-slate-700'
+      ? 'bg-neutral-900 text-neutral-100 border border-neutral-700'
       : isBlue
       ? 'bg-blue-800 text-white'
       : isWarm
       ? 'bg-amber-800 text-amber-100'
-      : 'bg-slate-800 text-slate-100';
+      : 'bg-neutral-900 text-white';
 
     return (
       <div
@@ -118,15 +118,31 @@ export const SubjectCardPreview = forwardRef<HTMLDivElement, SubjectCardPreviewP
             <div
               className={`p-2.5 rounded-none border text-xs flex items-start gap-2 ${
                 isDark
-                  ? 'bg-amber-950/40 border-amber-800/60 text-amber-200'
+                  ? 'bg-neutral-900 border-neutral-800 text-neutral-200'
                   : isWarm
                   ? 'bg-amber-100/70 border-amber-300 text-amber-900'
-                  : 'bg-amber-50 border-amber-200 text-amber-900'
+                  : 'bg-neutral-100 border-neutral-300 text-neutral-900'
               }`}
             >
-              <BellRing className="w-3.5 h-3.5 shrink-0 mt-0.5 text-amber-600 dark:text-amber-400" />
+              <BellRing
+                className={`w-3.5 h-3.5 shrink-0 mt-0.5 ${
+                  isDark
+                    ? 'text-neutral-400'
+                    : isWarm
+                    ? 'text-amber-600'
+                    : 'text-neutral-700'
+                }`}
+              />
               <div>
-                <span className="font-semibold block text-[10px] uppercase tracking-wider mb-0.5 text-amber-800 dark:text-amber-300">
+                <span
+                  className={`font-semibold block text-[10px] uppercase tracking-wider mb-0.5 ${
+                    isDark
+                      ? 'text-neutral-300'
+                      : isWarm
+                      ? 'text-amber-800'
+                      : 'text-neutral-800'
+                  }`}
+                >
                   Notice
                 </span>
                 <p className="leading-relaxed">{data.announcement.trim()}</p>
@@ -138,7 +154,7 @@ export const SubjectCardPreview = forwardRef<HTMLDivElement, SubjectCardPreviewP
         {/* Subjects List - No rounded corners */}
         <div className="p-5 space-y-3">
           {activeSubjects.length === 0 ? (
-            <div className="text-center py-10 text-slate-400 dark:text-slate-500 text-xs">
+            <div className="text-center py-10 text-neutral-400 dark:text-neutral-500 text-xs">
               No subjects enabled. Enable subjects to see preview.
             </div>
           ) : (
@@ -151,19 +167,19 @@ export const SubjectCardPreview = forwardRef<HTMLDivElement, SubjectCardPreviewP
                   key={sub.id}
                   className={`rounded-none border transition-all ${
                     isDark
-                      ? 'bg-slate-800/90 border-slate-700'
+                      ? 'bg-neutral-950 border-neutral-800'
                       : isWarm
                       ? 'bg-white border-amber-200/80 shadow-sm'
-                      : 'bg-white border-slate-200 shadow-sm'
+                      : 'bg-white border-neutral-200 shadow-sm'
                   } overflow-hidden`}
                 >
                   {/* Subject Title Bar - Compact */}
                   <div
                     className="px-3.5 py-1.5 flex items-center justify-between border-b"
                     style={{
-                      borderBottomColor: isDark ? '#334155' : '#f1f5f9',
+                      borderBottomColor: isDark ? '#262626' : '#f5f5f5',
                       backgroundColor: isDark
-                        ? 'rgba(30, 41, 59, 0.7)'
+                        ? 'rgba(20, 20, 20, 0.9)'
                         : `${sub.color.accent}0d`,
                     }}
                   >

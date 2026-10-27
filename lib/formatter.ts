@@ -252,26 +252,26 @@ export function getThemeStyles(theme: ThemePreset) {
     case 'clean-white':
       return {
         cardBg: 'bg-white',
-        headerBg: 'bg-slate-900',
+        headerBg: 'bg-black',
         headerText: 'text-white',
-        border: 'border-slate-200 shadow-xl',
+        border: 'border-neutral-300 shadow-xl',
         titleColor: 'text-white',
-        dateBadge: 'bg-slate-800 text-slate-100',
-        noticeBg: 'bg-amber-50 border-amber-200 text-amber-950',
-        sectionDivider: 'border-slate-200',
-        subjectCardBg: 'bg-slate-50/70',
+        dateBadge: 'bg-neutral-900 text-neutral-100',
+        noticeBg: 'bg-neutral-100 border-neutral-300 text-neutral-900',
+        sectionDivider: 'border-neutral-200',
+        subjectCardBg: 'bg-white',
       };
     case 'dark-slate':
       return {
-        cardBg: 'bg-[#0f172a]',
-        headerBg: 'bg-[#1e293b]',
-        headerText: 'text-slate-100',
-        border: 'border-slate-700/80 shadow-2xl',
+        cardBg: 'bg-black',
+        headerBg: 'bg-black',
+        headerText: 'text-white',
+        border: 'border-neutral-800 shadow-2xl',
         titleColor: 'text-white',
-        dateBadge: 'bg-slate-700 text-slate-200',
-        noticeBg: 'bg-amber-950/40 border-amber-800/50 text-amber-200',
-        sectionDivider: 'border-slate-800',
-        subjectCardBg: 'bg-slate-800/80',
+        dateBadge: 'bg-neutral-900 text-neutral-100 border border-neutral-700',
+        noticeBg: 'bg-neutral-900 border-neutral-800 text-neutral-200',
+        sectionDivider: 'border-neutral-800',
+        subjectCardBg: 'bg-neutral-950',
       };
     case 'academic-blue':
       return {
