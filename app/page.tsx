@@ -169,14 +169,14 @@ export default function HomePage() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-4 sm:py-8">
         {/* Intro Banner */}
-        <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-200 dark:border-slate-800">
+        <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 sm:pb-4 border-b border-slate-200 dark:border-slate-800">
           <div>
             <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
               Homework
             </h1>
-            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5 sm:mt-1">
               Enter topics for Physics, Chemistry, Biology, Math, and English. Export high-quality PNG image for group.
             </p>
           </div>
@@ -193,12 +193,12 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Mobile Viewport Toggle (Edit vs Preview) */}
-        <div className="lg:hidden flex p-1 bg-slate-200 dark:bg-slate-800 mb-6 rounded-none">
+        {/* Mobile Viewport Sticky Toggle (Edit vs Preview) */}
+        <div className="lg:hidden sticky top-14 z-30 flex p-1 bg-slate-200/95 dark:bg-slate-800/95 backdrop-blur mb-4 rounded-none shadow-sm border border-slate-300 dark:border-slate-700">
           <button
             type="button"
             onClick={() => setActiveMobileTab('edit')}
-            className={`flex-1 flex items-center justify-center gap-2 py-2 text-xs font-semibold rounded-none transition-all ${
+            className={`flex-1 flex items-center justify-center gap-1.5 py-2 text-xs font-semibold rounded-none transition-all ${
               activeMobileTab === 'edit'
                 ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm'
                 : 'text-slate-600 dark:text-slate-400'
@@ -210,7 +210,7 @@ export default function HomePage() {
           <button
             type="button"
             onClick={() => setActiveMobileTab('preview')}
-            className={`flex-1 flex items-center justify-center gap-2 py-2 text-xs font-semibold rounded-none transition-all ${
+            className={`flex-1 flex items-center justify-center gap-1.5 py-2 text-xs font-semibold rounded-none transition-all ${
               activeMobileTab === 'preview'
                 ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm'
                 : 'text-slate-600 dark:text-slate-400'
@@ -222,10 +222,10 @@ export default function HomePage() {
         </div>
 
         {/* Grid Layout: Left is Editor, Right is Live Preview Card */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
           {/* Left Column: Editor Inputs */}
           <section
-            className={`lg:col-span-6 space-y-6 ${
+            className={`lg:col-span-6 space-y-5 sm:space-y-6 ${
               activeMobileTab === 'edit' ? 'block' : 'hidden lg:block'
             }`}
           >
@@ -234,7 +234,7 @@ export default function HomePage() {
 
           {/* Right Column: Live Card & Actions */}
           <section
-            className={`lg:col-span-6 lg:sticky lg:top-24 space-y-5 ${
+            className={`lg:col-span-6 lg:sticky lg:top-24 space-y-4 sm:space-y-5 ${
               activeMobileTab === 'preview' ? 'block' : 'hidden lg:block'
             }`}
           >
@@ -261,7 +261,7 @@ export default function HomePage() {
                 </span>
               </div>
 
-              <div className="p-2 sm:p-4 bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex justify-center overflow-x-auto rounded-none">
+              <div className="p-1 sm:p-4 bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex justify-center overflow-x-auto rounded-none">
                 <SubjectCardPreview
                   ref={previewCardRef}
                   data={data}
