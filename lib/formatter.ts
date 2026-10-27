@@ -25,6 +25,41 @@ export interface DigestData {
 
 export type ThemePreset = 'whatsapp-mint' | 'clean-white' | 'dark-slate' | 'academic-blue' | 'warm-paper';
 
+export type FontStyle = 'sans' | 'serif' | 'mono';
+
+export interface FontOption {
+  id: FontStyle;
+  name: string;
+  family: string;
+  previewClass: string;
+}
+
+export const FONT_OPTIONS: FontOption[] = [
+  {
+    id: 'sans',
+    name: 'Sans',
+    family: "'Noto Sans', -apple-system, BlinkMacSystemFont, sans-serif",
+    previewClass: 'font-sans',
+  },
+  {
+    id: 'serif',
+    name: 'Serif',
+    family: "'Noto Serif', Georgia, Cambria, 'Times New Roman', serif",
+    previewClass: 'font-serif',
+  },
+  {
+    id: 'mono',
+    name: 'Mono',
+    family: "'JetBrains Mono', 'Courier New', Courier, monospace",
+    previewClass: 'font-mono',
+  },
+];
+
+export function getFontFamily(font: FontStyle): string {
+  const found = FONT_OPTIONS.find(f => f.id === font);
+  return found ? found.family : FONT_OPTIONS[0].family;
+}
+
 export const DEFAULT_SUBJECTS: SubjectItem[] = [
   {
     id: 'physics',

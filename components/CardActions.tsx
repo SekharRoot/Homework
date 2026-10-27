@@ -9,13 +9,22 @@ import {
   Palette,
   Image as ImageIcon,
   Sparkles,
+  Type,
 } from 'lucide-react';
-import { ThemePreset, DigestData, generateWhatsAppText } from '@/lib/formatter';
+import {
+  ThemePreset,
+  FontStyle,
+  FONT_OPTIONS,
+  DigestData,
+  generateWhatsAppText,
+} from '@/lib/formatter';
 
 interface CardActionsProps {
   data: DigestData;
   theme: ThemePreset;
   onThemeChange: (theme: ThemePreset) => void;
+  fontStyle: FontStyle;
+  onFontStyleChange: (font: FontStyle) => void;
   onDownload: () => void;
   onCopyImage: () => void;
   onShareImage: () => void;
@@ -34,6 +43,8 @@ export function CardActions({
   data,
   theme,
   onThemeChange,
+  fontStyle,
+  onFontStyleChange,
   onDownload,
   onCopyImage,
   onShareImage,
@@ -62,28 +73,59 @@ export function CardActions({
 
   return (
     <div className="bg-white dark:bg-slate-900 rounded-none p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
-      {/* Theme selection */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-700 dark:text-slate-300">
-          <Palette className="w-4 h-4 text-emerald-600" />
-          <span>Card Theme:</span>
+      {/* Visual Customization: Theme and Font */}
+      <div className="space-y-3">
+        {/* Theme selection */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-700 dark:text-slate-300">
+            <Palette className="w-4 h-4 text-emerald-600" />
+            <span>Card Theme:</span>
+          </div>
+          <div className="flex items-center gap-1.5 flex-wrap">
+            {THEME_OPTIONS.map(opt => (
+              <button
+                key={opt.id}
+                type="button"
+                onClick={() => onThemeChange(opt.id)}
+                className={`flex items-center gap-1.5 px-2.5 py-1 text-xs rounded-none font-medium transition-all ${
+                  theme === opt.id
+                    ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-sm'
+                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
+                }`}
+              >
+                <span className={`w-2 h-2 rounded-none ${opt.colorClass}`} />
+                <span>{opt.name}</span>
+              </button>
+            ))}
+          </div>
         </div>
-        <div className="flex items-center gap-1.5 flex-wrap">
-          {THEME_OPTIONS.map(opt => (
-            <button
-              key={opt.id}
-              type="button"
-              onClick={() => onThemeChange(opt.id)}
-              className={`flex items-center gap-1.5 px-2.5 py-1 text-xs rounded-none font-medium transition-all ${
-                theme === opt.id
-                  ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-sm'
-                  : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
-              }`}
-            >
-              <span className={`w-2 h-2 rounded-none ${opt.colorClass}`} />
-              <span>{opt.name}</span>
-            </button>
-          ))}
+
+        {/* Font Style Selection (Serif, Sans, Mono) */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pt-2.5 border-t border-slate-100 dark:border-slate-800/60">
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-700 dark:text-slate-300">
+            <Type className="w-4 h-4 text-emerald-600" />
+            <span>Font Style:</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            {FONT_OPTIONS.map(opt => (
+              <button
+                key={opt.id}
+                type="button"
+                onClick={() => onFontStyleChange(opt.id)}
+                className={`flex items-center gap-1.5 px-3 py-1 text-xs rounded-none transition-all ${opt.previewClass} ${
+                  fontStyle === opt.id
+                    ? 'bg-emerald-600 text-white shadow-sm font-semibold'
+                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 font-medium'
+                }`}
+                title={`Switch card font to ${opt.name}`}
+              >
+                <span className="text-[11px] opacity-80">
+                  {opt.id === 'serif' ? 'Ag' : opt.id === 'mono' ? '</>' : 'Aa'}
+                </span>
+                <span>{opt.name}</span>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 

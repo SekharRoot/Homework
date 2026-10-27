@@ -4,6 +4,7 @@ import {
   cleanBulletLines,
   formatDisplayDate,
   generateWhatsAppText,
+  getFontFamily,
   DEFAULT_SUBJECTS,
   DigestData,
 } from './formatter';
@@ -77,4 +78,10 @@ test('generateWhatsAppText produces WhatsApp-compatible markdown format with Hom
   // No WhatsApp Digest or footer note
   assert.equal(output.toLowerCase().includes('whatsapp digest'), false);
   assert.equal(output.includes('parent diary'), false);
+});
+
+test('getFontFamily returns correct family for sans, serif, and mono', () => {
+  assert.match(getFontFamily('sans'), /Noto Sans/);
+  assert.match(getFontFamily('serif'), /Noto Serif/);
+  assert.match(getFontFamily('mono'), /JetBrains Mono/);
 });

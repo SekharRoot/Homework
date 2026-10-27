@@ -11,11 +11,19 @@ import {
   Bookmark,
   BellRing,
 } from 'lucide-react';
-import { DigestData, ThemePreset, formatDisplayDate, cleanBulletLines } from '@/lib/formatter';
+import {
+  DigestData,
+  ThemePreset,
+  FontStyle,
+  getFontFamily,
+  formatDisplayDate,
+  cleanBulletLines,
+} from '@/lib/formatter';
 
 interface SubjectCardPreviewProps {
   data: DigestData;
   theme: ThemePreset;
+  fontStyle?: FontStyle;
 }
 
 const SUBJECT_ICONS: Record<string, React.ReactNode> = {
@@ -28,9 +36,16 @@ const SUBJECT_ICONS: Record<string, React.ReactNode> = {
 };
 
 export const SubjectCardPreview = forwardRef<HTMLDivElement, SubjectCardPreviewProps>(
-  ({ data, theme }, ref) => {
+  ({ data, theme, fontStyle = 'sans' }, ref) => {
     const formattedDate = formatDisplayDate(data.date);
     const activeSubjects = data.subjects.filter(s => s.enabled);
+    const fontFamilyStyle = getFontFamily(fontStyle);
+    const fontClass =
+      fontStyle === 'serif'
+        ? 'font-serif'
+        : fontStyle === 'mono'
+        ? 'font-mono'
+        : 'font-sans';
 
     // Theme style mappings
     const isDark = theme === 'dark-slate';
@@ -73,8 +88,8 @@ export const SubjectCardPreview = forwardRef<HTMLDivElement, SubjectCardPreviewP
       <div
         ref={ref}
         id="whatsapp-preview-card"
-        className={`w-full max-w-[540px] mx-auto rounded-none overflow-hidden shadow-2xl border border-slate-300 dark:border-slate-700 transition-all font-sans ${cardBgClass}`}
-        style={{ fontFamily: "'Noto Sans', -apple-system, BlinkMacSystemFont, sans-serif" }}
+        className={`w-full max-w-[540px] mx-auto rounded-none overflow-hidden shadow-2xl border border-slate-300 dark:border-slate-700 transition-all ${fontClass} ${cardBgClass}`}
+        style={{ fontFamily: fontFamilyStyle }}
       >
         {/* Compact Header Bar - No rounded corners */}
         <div className={`px-5 py-4 ${headerBgClass} rounded-none`}>

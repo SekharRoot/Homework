@@ -9,6 +9,7 @@ import { CardActions } from '@/components/CardActions';
 import {
   DigestData,
   ThemePreset,
+  FontStyle,
   DEFAULT_SUBJECTS,
   SAMPLE_DATA,
 } from '@/lib/formatter';
@@ -30,6 +31,7 @@ export default function HomePage() {
   }));
 
   const [theme, setTheme] = useState<ThemePreset>('whatsapp-mint');
+  const [fontStyle, setFontStyle] = useState<FontStyle>('sans');
   const [isDownloading, setIsDownloading] = useState(false);
   const [activeMobileTab, setActiveMobileTab] = useState<'edit' | 'preview'>('edit');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -169,30 +171,7 @@ export default function HomePage() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-4 sm:py-8">
-        {/* Intro Banner */}
-        <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 sm:pb-4 border-b border-slate-200 dark:border-slate-800">
-          <div>
-            <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
-              Homework
-            </h1>
-            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5 sm:mt-1">
-              Enter topics for Physics, Chemistry, Biology, Math, and English. Export high-quality PNG image for group.
-            </p>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <button
-              onClick={handleLoadSample}
-              type="button"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-none bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 hover:bg-emerald-100 transition-colors"
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Fill Example Data</span>
-            </button>
-          </div>
-        </div>
-
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-4 sm:py-6">
         {/* Mobile Viewport Sticky Toggle (Edit vs Preview) */}
         <div className="lg:hidden sticky top-14 z-30 flex p-1 bg-slate-200/95 dark:bg-slate-800/95 backdrop-blur mb-4 rounded-none shadow-sm border border-slate-300 dark:border-slate-700">
           <button
@@ -238,11 +217,13 @@ export default function HomePage() {
               activeMobileTab === 'preview' ? 'block' : 'hidden lg:block'
             }`}
           >
-            {/* Actions Bar (Download, Copy Image, Share HQ Image, Theme switcher) */}
+            {/* Actions Bar (Download, Copy Image, Share HQ Image, Theme switcher, Font switcher) */}
             <CardActions
               data={data}
               theme={theme}
               onThemeChange={setTheme}
+              fontStyle={fontStyle}
+              onFontStyleChange={setFontStyle}
               onDownload={handleDownloadImage}
               onCopyImage={handleCopyImage}
               onShareImage={handleShareImage}
@@ -266,6 +247,7 @@ export default function HomePage() {
                   ref={previewCardRef}
                   data={data}
                   theme={theme}
+                  fontStyle={fontStyle}
                 />
               </div>
 
